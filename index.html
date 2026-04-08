@@ -5,6 +5,7 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <title>Philipp Hausenblas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -19,48 +20,141 @@
       background: white;
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      position: relative;
     }
-    h1 {
-      margin-top: 0;
+    h1 { margin-top: 0; }
+    a { color: #0077cc; text-decoration: none; }
+    .section { margin-top: 30px; }
+    ul { padding-left: 20px; }
+    .highlight {
+      background: #eef6ff;
+      padding: 15px;
+      border-radius: 8px;
     }
-    a {
-      color: #0077cc;
-      text-decoration: none;
+    .lang-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      border: none;
+      background: #0077cc;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
     }
-    .section {
-      margin-top: 30px;
-    }
+    .lang { display: none; }
+    .lang.active { display: block; }
   </style>
 </head>
+
 <body>
   <div class="container">
-    <h1>Philipp Hausenblas</h1>
-    <p>
-      Research in optimization, machine learning, and revenue management.
-    </p>
 
-    <div class="section">
-      <h2>About</h2>
-      <p>
-        I work on dynamic pricing, graph neural networks, and decision-making models.
-      </p>
+    <button class="lang-btn" onclick="toggleLang()">DE / EN</button>
+
+    <!-- ENGLISH -->
+    <div id="en" class="lang active">
+      <h1>Philipp Hausenblas</h1>
+      <p>PhD student in Mathematics. Research in optimization, machine learning, and revenue management.</p>
+
+      <div class="section highlight">
+        <h2>Statistical Consulting for Medical Theses</h2>
+        <p>I offer statistical support for medical students writing their thesis.</p>
+        <ul>
+          <li>Study design & methodology</li>
+          <li>Data analysis (R / Python)</li>
+          <li>Interpretation of results</li>
+          <li>Support for statistical sections</li>
+        </ul>
+        <p>I have a strong background in statistics and prior collaborations with medical researchers.</p>
+      </div>
+
+      <div class="section">
+        <h2>Publications</h2>
+        <ul>
+          <li>Hausenblas, P. (2025). <i>Title of your paper</i>.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Contact</h2>
+        <p><a href="mailto:your@email.com">your@email.com</a></p>
+      </div>
+
+      <div class="section">
+        <h2>Imprint</h2>
+        <p>
+          Philipp Hausenblas<br>
+          [Address]<br>
+          Austria<br><br>
+          Email: <a href="mailto:your@email.com">your@email.com</a>
+        </p>
+      </div>
     </div>
 
-    <div class="section">
-      <h2>Projects</h2>
-      <ul>
-        <li>Offline Reinforcement Learning for Pricing</li>
-        <li>Network Revenue Management with GNNs</li>
-      </ul>
+    <!-- GERMAN -->
+    <div id="de" class="lang">
+      <h1>Philipp Hausenblas</h1>
+      <p>Doktorand der Mathematik. Forschung in Optimierung, Machine Learning und Revenue Management.</p>
+
+      <div class="section highlight">
+        <h2>Statistische Beratung für medizinische Abschlussarbeiten</h2>
+        <p>Ich biete statistische Unterstützung für Medizinstudierende bei Diplomarbeiten und Dissertationen.</p>
+        <ul>
+          <li>Studiendesign & Methodik</li>
+          <li>Datenanalyse (R / Python)</li>
+          <li>Interpretation der Ergebnisse</li>
+          <li>Unterstützung beim Statistikteil der Arbeit</li>
+        </ul>
+        <p>Durch meine Promotion in Mathematik verfüge ich über fundierte Statistikkenntnisse und habe bereits mit medizinischen Forschungsgruppen gearbeitet.</p>
+      </div>
+
+      <div class="section">
+        <h2>Publikationen</h2>
+        <ul>
+          <li>Hausenblas, P. (2025). <i>Titel deiner Arbeit</i>.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Kontakt</h2>
+        <p><a href="mailto:your@email.com">your@email.com</a></p>
+      </div>
+
+      <div class="section">
+        <h2>Impressum</h2>
+        <p>
+          Philipp Hausenblas<br>
+          [Adresse]<br>
+          Österreich<br><br>
+          E-Mail: <a href="mailto:your@email.com">your@email.com</a>
+        </p>
+      </div>
     </div>
 
-    <div class="section">
-      <h2>Contact</h2>
-      <p>
-        <a href="mailto:your@email.com">Email</a> |
-        <a href="https://github.com/phibonaccip">GitHub</a>
-      </p>
-    </div>
   </div>
+
+  <script>
+    function toggleLang() {
+      const en = document.getElementById("en");
+      const de = document.getElementById("de");
+
+      en.classList.toggle("active");
+      de.classList.toggle("active");
+
+      // remember choice
+      localStorage.setItem("lang", en.classList.contains("active") ? "en" : "de");
+    }
+
+    // load saved language
+    window.onload = function () {
+      const saved = localStorage.getItem("lang");
+      if (saved === "de") {
+        document.getElementById("en").classList.remove("active");
+        document.getElementById("de").classList.add("active");
+      }
+    };
+  </script>
+
 </body>
 </html>
